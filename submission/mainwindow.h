@@ -18,9 +18,12 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
-private slots:
     void SetInputText(const std::string& text);
-    void SetErrorText(const std::string& text)
+    void SetErrorText(const std::string& text);
+    void SetFormulaText(const std::string& text);
+    void SetMemText(const std::string& text);
+    void SetExtraKey(const std::optional<std::string>& key);
+private slots:
 private:
     Ui::MainWindow* ui;
 };
