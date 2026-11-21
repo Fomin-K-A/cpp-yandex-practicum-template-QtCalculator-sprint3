@@ -86,7 +86,7 @@ public:
     }
 
     std::optional<Error> Pow(Number exp) {
-        if (is_zero(n_) && is_zero(exp)) {
+        if (n_ == 0 && exp == 0) {
             return "Zero power to zero";
         }
 
@@ -94,7 +94,7 @@ public:
             if (exp.GetDenominator() != 1) {
                 return "Fractional power is not supported";
             }
-            n_ = PowRational(n_, exp);
+            n_ = ::Pow(n_, exp);
             return std::nullopt;
         }
 
@@ -102,7 +102,7 @@ public:
             if (exp < Number(0)) {
                 return "Integer negative power";
             }
-            n_ = IntegerPow(n_, static_cast<long long>(exp));
+            n_ = IntegerPow(n_, exp);;
             return std::nullopt;
         }
 
@@ -112,15 +112,17 @@ public:
         }
     }
 
-    std::optional<Error> Save(Number n){
-        mem_ = n;
-        return std::nullopt;
+    void Save() {
+        mem_ = n_;
     }
-    std::optional<Error> Load(Number n){
-        if(mem_.has_value()){
-            n_ = mem_.value();
-            return std::nullopt;
+
+    void Load() {
+        if (mem_.has_value()) {
+            n_ = *mem_;
         }
-        return "Mem is clear";
+    }
+
+    bool GetHasMem() const {
+        return mem_.has_value();
     }
 };

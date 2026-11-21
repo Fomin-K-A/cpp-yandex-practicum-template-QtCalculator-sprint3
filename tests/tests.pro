@@ -1,7 +1,3 @@
-########
-MOCK_LIB=../../../../mocks_library
-########
-
 QT += testlib
 QT += gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -14,7 +10,7 @@ SUBMISSION_PATH = ../submission
 DEFINES += "PRAC_TESTS"
 
 isEmpty(MOCK_LIB) {
-    MOCK_LIB=/tmp/practicum-qt-mocks
+     MOCK_LIB = C:/Qt/Dev_Qt/cpp-qt-template-practicum-2025/mocks_library
 }
 
 INCLUDEPATH += $$SUBMISSION_PATH
